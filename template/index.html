@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Prédiction de Popularité Facebook</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Prédiction de la Popularité d'un Post Facebook</h1>
+        <form action="/predict" method="post">
+            <input type="number" name="page_total_likes" placeholder="Total J'aime sur la page" required>
+            <input type="number" name="type" placeholder="Type (0: photo, 1: vidéo, ...)" required>
+            <input type="number" name="category" placeholder="Catégorie (1, 2, ...)" required>
+            <input type="number" name="post_month" placeholder="Mois de publication (1-12)" required>
+            <input type="number" name="post_weekday" placeholder="Jour de publication (1-7)" required>
+            <input type="number" name="post_hour" placeholder="Heure de publication (0-23)" required>
+            <input type="number" name="paid" placeholder="Publicité payante (0 ou 1)" required>
+            <input type="number" name="lifetime_post_total_reach" placeholder="Portée totale de la publication à vie" required>
+            <input type="number" name="lifetime_post_total_impressions" placeholder="Total des impressions de publication à vie" required>
+            <input type="number" name="lifetime_engaged_users" placeholder="Utilisateurs engagés à vie" required>
+            <input type="number" name="lifetime_post_consumers" placeholder="Consommateurs de publications à vie" required>
+            <input type="number" name="lifetime_post_consumptions" placeholder="Consommations de publication à vie" required>
+            <input type="number" name="lifetime_post_impressions_by_likers" placeholder="Impressions par ceux qui aiment votre page" required>
+            <input type="number" name="lifetime_post_reach_by_likers" placeholder="Portée par ceux qui aiment votre page" required>
+            <input type="number" name="lifetime_likers_engagement" placeholder="Engagement des likers" required>
+            <button type="submit">Prédire</button>
+        </form>
+        {% if prediction_text %}
+        <h2>{{ prediction_text }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
